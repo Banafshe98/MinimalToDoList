@@ -2,7 +2,7 @@ import React from "react";
 
 export const Layout = ({children}) => {
   return (
-    <div className="justify-center flex flex-col gap-4 items-center bg-orange-100">
+    <div className="items-center p-32 bg-slate-900 flex flex-col gap-2 px-5 py-1 font-bold ">
       {children}
     </div>
   );
