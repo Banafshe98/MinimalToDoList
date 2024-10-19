@@ -11,14 +11,7 @@ const Todo = ({ children }) => {
         <p className="text-lg font-bold">To Do list</p>
       </div>
       <div className="flex flex-col gap-3">
-        <Addtask/>
-        <Task/>
-        <Task/>
-        <Task/>
-        <Task/>
-
-
-
+        <Addtask />
       </div>
     </div>
   );
