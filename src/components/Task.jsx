@@ -4,15 +4,15 @@ import Delete from "../assets/Delete.svg"
 
 
 
-const Task = () => {
+const Task = (props) => {
   return (
     <div className="flex items-center my-3">
         <div className="flex flex-1 gap-1 items-center cursor-pointer">
           <img src={Check}></img>
-          <p>Read My Book</p>
+          <li>{props.task}</li>
         </div>
         <img className='cursor-pointer' src={Delete}></img>
-    </div>
+    </div> 
   )
 }
 
