@@ -6,16 +6,16 @@ import Task from "./Task";
 const Todo = () => {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
-  
+
   const handleChange = (event) => {
     const newInput = event.target.value;
     setInputText(newInput);
   };
-  
+
   const addItem = () => {
-    if (inputText.trim() === "") return; // Prevent adding empty tasks
+    if (inputText.trim() === "") return;
     setItems((prev) => [...prev, inputText]);
-    setInputText(""); // Clear input
+    setInputText("");
   };
 
   return (
@@ -25,15 +25,15 @@ const Todo = () => {
         <p className="text-lg font-bold">To Do list</p>
       </div>
       <div>
-        <Addtask 
-          inputText={inputText} 
-          handleChange={handleChange} 
-          addItem={addItem} 
+        <Addtask
+          inputText={inputText}
+          handleChange={handleChange}
+          addItem={addItem}
         />
       </div>
       <ul className="flex flex-col">
-        {items.map((item, id) => (
-          <Task task={item} id={id} key={id} />
+        {items.map((task, id) => (
+          <Task task={task} id={id} key={id} />
         ))}
       </ul>
     </div>
