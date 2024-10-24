@@ -11,7 +11,10 @@ const Todo = () => {
     const newInput = event.target.value;
     setInputText(newInput);
   };
-
+  const deleteItem = (id) => {
+    setItems((prev) => prev.filter((task, index) => index !== id));
+  };
+  
   const addItem = () => {
     if (inputText.trim() === "") return;
     setItems((prev) => [...prev, inputText]);
@@ -32,8 +35,8 @@ const Todo = () => {
         />
       </div>
       <ul className="flex flex-col">
-        {items.map((task, id) => (
-          <Task task={task} id={id} key={id} />
+        {items.map((task,id) => (
+          <Task text={task} id={id} key={id} deleteItem={deleteItem}/>
         ))}
       </ul>
     </div>
