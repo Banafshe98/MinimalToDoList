@@ -1,5 +1,5 @@
 import React from "react";
-import Add from "../assets/Add.svg";
+import AddBtn from "./AddBtn";
 
 export const Addtask = ({ inputText, handleChange, addItem }) => {
   return (
@@ -11,12 +11,7 @@ export const Addtask = ({ inputText, handleChange, addItem }) => {
         value={inputText}
         onChange={handleChange}
       />
-      <button
-        onClick={addItem}
-        className="flex items-center justify-center border-none rounded-full bg-lime-500 w-28 h-14 text-white text-lg font-medium cursor-pointer"
-      >
-        <img src={Add} alt="Add" />
-      </button>
+      <AddBtn addItem={addItem} /> {/* Pass addItem to AddBtn */}
     </div>
   );
 };

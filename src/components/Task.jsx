@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Check from "../assets/Check.svg";
-import Delete from "../assets/Delete.svg";
+import DeleteBtn from "./DeleteBtn";
 
 const Task = (props) => {
   const [isComplete, setIsComplete] = useState(false);
@@ -9,10 +9,6 @@ const Task = (props) => {
       return !prev;
     });
   };
-
-  const [items, setItems] = useState([]);
-
-
 
   return (
     <div className="flex items-center my-3">
@@ -32,11 +28,7 @@ const Task = (props) => {
           {props.text}
         </li>
       </div>
-      <img
-        onClick={() =>(props.deleteItem(props.id))}
-        className="cursor-pointer rounded-full hover:bg-red-400"
-        src={Delete}
-      ></img>
+  <DeleteBtn deleteItem={props.deleteItem} id={props.id}/>
     </div>
   );
 };

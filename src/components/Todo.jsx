@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Import useState
+import React, { useState } from "react";
 import Calendar from "../assets/Calendar.svg";
 import { Addtask } from "./Addtask";
 import Task from "./Task";
@@ -8,13 +8,13 @@ const Todo = () => {
   const [items, setItems] = useState([]);
 
   const handleChange = (event) => {
-    const newInput = event.target.value;
-    setInputText(newInput);
+    setInputText(event.target.value);
   };
+
   const deleteItem = (id) => {
     setItems((prev) => prev.filter((task, index) => index !== id));
   };
-  
+
   const addItem = () => {
     if (inputText.trim() === "") return;
     setItems((prev) => [...prev, inputText]);
@@ -35,8 +35,8 @@ const Todo = () => {
         />
       </div>
       <ul className="flex flex-col">
-        {items.map((task,id) => (
-          <Task text={task} id={id} key={id} deleteItem={deleteItem}/>
+        {items.map((task, id) => (
+          <Task text={task} id={id} key={id} deleteItem={deleteItem} />
         ))}
       </ul>
     </div>
