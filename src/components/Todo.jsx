@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "../assets/Calendar.svg";
 import { Addtask } from "./Addtask";
 import Task from "./Task";
 
 const Todo = () => {
   const [inputText, setInputText] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(localStorage.getItem("task")? JSON.parse(localStorage.getItem("task")) : []);
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -20,6 +20,10 @@ const Todo = () => {
     setItems((prev) => [...prev, inputText]);
     setInputText("");
   };
+
+  useEffect(() => {
+    localStorage.setItem("task" , JSON.stringify(items))}
+    , [items]);
 
   return (
     <div className="bg-yellow-50 rounded-md p-10 flex flex-col gap-1 mb-1">

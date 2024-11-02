@@ -28,7 +28,7 @@ const Task = (props) => {
           {props.text}
         </li>
       </div>
-  <DeleteBtn deleteItem={props.deleteItem} id={props.id}/>
+      <DeleteBtn deleteItem={props.deleteItem} id={props.id} />
     </div>
   );
 };
