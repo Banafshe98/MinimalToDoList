@@ -4,8 +4,8 @@ import Add from "../assets/Add.svg";
 export const Addtask = ({ inputText, handleChange, addItem }) => {
   return (
     <form className="flex flex-nowrap items-center bg-gray-50 rounded-full">
-      <input
-        className="text-md font-bold bg-transparent h-14 pl-6 pr-2 border-0 outline-none flex-1 placeholder:text-slate-400 focus:outline-double"
+       <input
+        className="text-md font-bold bg-transparent h-14 pl-6 pr-2 border-0 outline-none flex-1 placeholder:text-slate-400 focus:outline-none focus:ring-0 focus:border-0"
         type="text"
         placeholder="Add your task"
         value={inputText}
