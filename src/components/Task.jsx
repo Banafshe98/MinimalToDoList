@@ -8,7 +8,7 @@ const Task = (props) => {
     setIsComplete((prev) => {
       return !prev;
     });
-  };
+  }; 
 
   return (
     <div className="flex items-center my-3">
