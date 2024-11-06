@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Calendar from "../assets/Calendar.svg";
 import { Addtask } from "./Addtask";
 import Task from "./Task";
-import DarkMode from "./DarkMode";
 
 const Todo = () => {
   const [inputText, setInputText] = useState("");
@@ -31,8 +30,8 @@ const Todo = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-      <div className="bg-yellow-50 rounded-md p-10 flex flex-col gap-1 mb-1">
-        <div className="flex flex-row items-center justify-center gap-1">
+      <div className="bg-todo rounded-md p-10 flex flex-col gap-1 mb-1 dark:bg-custom-beige">
+        <div className="flex flex-row items-center justify-center mb-6">
           <img src={Calendar} alt="Calendar" />
           <p className="text-lg font-bold">To Do list</p>
         </div>

@@ -16,7 +16,7 @@ const Task = (props) => {
         <img
           onClick={doneToggle}
           className={`w-6 h-6 rounded-full ${
-            isComplete ? "bg-lime-400" : "hover:bg-lime-200"
+            isComplete ? "bg-done" : "hover:bg-hover"
           }`}
           src={Check}
         />

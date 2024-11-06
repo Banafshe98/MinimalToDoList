@@ -9,7 +9,7 @@ const DeleteBtn = ( {deleteItem , id} ) => {
           deleteItem(id)
         }
         }
-        className="cursor-pointer rounded-full hover:bg-red-400"
+        className="cursor-pointer rounded-full hover:bg-delete"
         src={Delete}
       ></img>
   )
