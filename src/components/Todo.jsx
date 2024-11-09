@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Calendar from "../assets/Calendar.svg";
 import { Addtask } from "./Addtask";
 import Task from "./Task";
+import { DndContext } from "@dnd-kit/core";
+import { SortableContext } from "@dnd-kit/sortable";
 
 const Todo = () => {
   const [inputText, setInputText] = useState("");
@@ -27,7 +29,6 @@ const Todo = () => {
     localStorage.setItem("task", JSON.stringify(items));
   }, [items]);
 
-  const [darkMode, setDarkMode] = useState(false);
 
   return (
       <div className="bg-todo rounded-md p-10 flex flex-col gap-1 mb-1 dark:bg-custom-beige">
@@ -42,11 +43,16 @@ const Todo = () => {
             addItem={addItem}
           />
         </div>
+
+
+
         <ul className="flex flex-col">
           {items.map((task, id) => (
             <Task text={task} id={id} key={id} deleteItem={deleteItem} />
           ))}
         </ul>
+
+        
       </div>
   );
 };
