@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Check from "../assets/Check.svg";
 import DeleteBtn from "./DeleteBtn";
+import {CSS} from '@dnd-kit/utilities';
+import { useSortable } from "@dnd-kit/sortable";
 
 const Task = (props) => {
   const [isComplete, setIsComplete] = useState(false);
@@ -10,8 +12,22 @@ const Task = (props) => {
     });
   }; 
 
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+    } = useSortable({id: props.id});
+
+
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+    };
+
   return (
-    <div className="flex items-center my-3">
+    <div {...attributes} {...listeners} ref={setNodeRef} style={style} className="flex items-center my-3">
       <div className="flex flex-1 gap-2 items-center cursor-pointer">
         <img
           onClick={doneToggle}
