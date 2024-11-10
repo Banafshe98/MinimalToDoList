@@ -27,7 +27,7 @@ const Task = (props) => {
     };
 
   return (
-    <div {...attributes} {...listeners} ref={setNodeRef} style={style} className="flex items-center my-3">
+    <div {...attributes} {...listeners} ref={setNodeRef} style={style} className="flex items-center my-3 py-1 px-3 rounded-md bg-neutral-200">
       <div className="flex flex-1 gap-2 items-center cursor-pointer">
         <img
           onClick={doneToggle}
