@@ -12,6 +12,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { arrayMove } from "@dnd-kit/sortable";
 
 const Todo = () => {
   const [inputText, setInputText] = useState("");
@@ -24,7 +25,7 @@ const Todo = () => {
   };
 
   const deleteItem = (id) => {
-    setItems((prev) => prev.filter((task, index) => index !== id));
+    setItems((prev) => prev.filter((_, index) => index !== id));
   };
 
   const addItem = () => {
@@ -37,21 +38,22 @@ const Todo = () => {
     localStorage.setItem("task", JSON.stringify(items));
   }, [items]);
 
+  const getItemPosition = (id) => {
+   items.findIndex((item) => item.id === id)
+  };
+
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
-    // Ensure that both active and over are defined
-    if (active.id !== over.id) {
-      const oldIndex = items.findIndex(item => item === active.id);
-      const newIndex = items.findIndex(item => item === over.id);
+    // Check if the item was dropped over itself
+    if (active.id === over.id) return;
 
-      // Create a new array with the reordered items
-      const newItems = Array.from(items);
-      newItems.splice(oldIndex, 1); // Remove the dragged item
-      newItems.splice(newIndex, 0, active.id); // Insert it at the new position
+    // Get the original and new positions
+    const originalPosition = getItemPosition(active.id);
+    const newPosition = getItemPosition(over.id);
 
-      setItems(newItems);
-    }
+    // Reorder the items
+    setItems((items) => arrayMove(items, originalPosition, newPosition));
   };
 
   return (
@@ -68,11 +70,12 @@ const Todo = () => {
           addItem={addItem}
         />
       </div>
+
       <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-        <SortableContext items={items} strategy={verticalListSortingStrategy}>
+        <SortableContext items={items.map((_, index) => index)} strategy={verticalListSortingStrategy}>
           <ul className="flex flex-col">
-            {items.map((task, id) => (
-              <Task text={task} id={task} key={id} deleteItem={deleteItem} />
+            {items.map((task, index) => (
+              <Task text={task} id={index} key={index} deleteItem={deleteItem} />
             ))}
           </ul>
         </SortableContext>
