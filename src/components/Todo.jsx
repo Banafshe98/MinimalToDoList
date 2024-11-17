@@ -2,17 +2,10 @@ import React, { useEffect, useState } from "react";
 import Calendar from "../assets/Calendar.svg";
 import { Addtask } from "./Addtask";
 import Task from "./Task";
-import {
-  closestCorners,
-  DndContext,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { closestCorners, DndContext, useSensor, useSensors } from "@dnd-kit/core";
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { arrayMove } from "@dnd-kit/sortable";
+import { v4 as uuidv4 } from 'uuid';
 
 const Todo = () => {
   const [inputText, setInputText] = useState("");
@@ -25,12 +18,13 @@ const Todo = () => {
   };
 
   const deleteItem = (id) => {
-    setItems((prev) => prev.filter((_, index) => index !== id));
+    setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   const addItem = () => {
     if (inputText.trim() === "") return;
-    setItems((prev) => [...prev, inputText]);
+    const newTask = { id: uuidv4(), text: inputText };
+    setItems((prev) => [...prev, newTask]);
     setInputText("");
   };
 
@@ -39,7 +33,7 @@ const Todo = () => {
   }, [items]);
 
   const getItemPosition = (id) => {
-   items.findIndex((item) => item.id === id)
+    return items.findIndex((item) => item.id === id);
   };
 
   const handleDragEnd = (event) => {
@@ -72,10 +66,10 @@ const Todo = () => {
       </div>
 
       <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-        <SortableContext items={items.map((_, index) => index)} strategy={verticalListSortingStrategy}>
+        <SortableContext items={items.map(item => item.id)} strategy={verticalListSortingStrategy}>
           <ul className="flex flex-col">
-            {items.map((task, index) => (
-              <Task text={task} id={index} key={index} deleteItem={deleteItem} />
+            {items.map((task) => (
+              <Task text={task.text} id={task.id} key={task.id} deleteItem={deleteItem} />
             ))}
           </ul>
         </SortableContext>
